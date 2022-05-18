@@ -22,3 +22,24 @@ function userPlay()
 
     return user_choice;
 }
+
+function playRound(playerSelection, computerSelection)
+{
+    let result = `You win! ${playerSelection} beats ${computerSelection}!`;
+
+    if(playerSelection === 'rock' && computerSelection === 'paper' ||
+       playerSelection === 'paper' && computerSelection === 'scissors' ||
+       playerSelection === 'scissors' && computerSelection === 'rock')
+    {
+        result = `You lose! ${computerSelection} beats ${playerSelection}!`;
+    }
+    else
+    {
+        if(playerSelection === computerPlay)
+        {
+            result = 'Tie!';
+        }
+    }
+    
+    return result;
+}
