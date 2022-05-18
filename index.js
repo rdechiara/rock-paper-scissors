@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection)
     }
     else
     {
-        if(playerSelection === computerPlay)
+        if(playerSelection === computerSelection)
         {
             result = 'Tie!';
         }
@@ -53,10 +53,10 @@ function playGame()
 
     for(let i = 0; i < rounds; i++)
     {
-            let userSelection = userPlay();
+            let playerSelection = userPlay();
             let computerSelection = computerPlay();
 
-            let result = playRound(userSelection, computerSelection);
+            let result = playRound(playerSelection, computerSelection);
 
             console.log(result);
 
