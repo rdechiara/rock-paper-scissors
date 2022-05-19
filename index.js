@@ -45,12 +45,12 @@ function playRound(playerSelection, computerSelection)
 
 function playGame()
 {
-    const rounds = 5;
+    const ROUNDS = 5;
     let computerWins = 0;
     let userWins = 0;
     let ties = 0;
 
-    for(let i = 0; i < rounds; i++)
+    for(let i = 0; i < ROUNDS; i++)
     {
             let playerSelection = userPlay();
             let computerSelection = computerPlay();
