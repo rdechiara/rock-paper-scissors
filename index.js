@@ -1,5 +1,6 @@
 const MOVES = ['rock', 'paper', 'scissors'];
-
+let userWins = 0;
+let computerWins = 0;
 function randomIntNumber(start=0, end = 1)
 {
     return start + Math.floor(Math.random() * (end -start));
@@ -10,17 +11,7 @@ function computerPlay()
     return MOVES[randomIntNumber(0,2)];
 }
 
-function userPlay()
-{
-    let userChoice = undefined;
-    do
-    {
-        userChoice = prompt("Rock, Paper or Scissors?", 'rock').toLowerCase();
-    }
-    while(!MOVES.includes(userChoice));
 
-    return userChoice;
-}
 
 function playRound(playerSelection, computerSelection)
 {
@@ -43,46 +34,45 @@ function playRound(playerSelection, computerSelection)
     return result;
 }
 
-function playGame()
+function setup()
 {
-    const ROUNDS = 5;
-    let computerWins = 0;
-    let userWins = 0;
-    let ties = 0;
-
-    for(let i = 0; i < ROUNDS; i++)
+    let buttons = [...document.querySelectorAll('button')];
+    buttons.forEach((button) =>
     {
-            let playerSelection = userPlay();
-            let computerSelection = computerPlay();
-
-            let result = playRound(playerSelection, computerSelection);
-
-            console.log(result);
-
-            if(result === `You win! ${playerSelection} beats ${computerSelection}!`)
+        button.onclick = (e) =>
+        {
+            let userChoice = e.target.id;
+            let result = playRound(userChoice, computerPlay());
+            let div = document.createElement('div');
+            div.innerText = result;
+            document.body.append(div);
+            if(result.substring(0,8) === 'You win!')
             {
                 ++userWins;
             }
-            else if(result === `You lose! ${computerSelection} beats ${playerSelection}!`)
+
+            if(result.substring(0,9) === 'You lose!')
             {
                 ++computerWins;
             }
+            if(5 === userWins)
+            {
+                buttons.forEach((b) => { b.disabled = true})
+                alert('Congratulations! You win the game!')
+
+            }
             else
             {
-                ++ties;
-            }
-    }
+                if(5 === computerWins)
+                {
+                    buttons.forEach((b) => { b.disabled = true})
+                    alert('Computer wins the game!')
 
-    if(userWins > computerWins)
-    {
-        console.log('You win!');
-    }
-    else if(computerWins > userWins)
-    {
-        console.log('Computer wins!');
-    }
-    else
-    {
-        console.log('It\'s a tie!');
-    }
+                }
+            }
+
+
+        };
+    });
 }
+setup();
