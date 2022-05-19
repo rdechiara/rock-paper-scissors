@@ -1,4 +1,4 @@
-const moves = ['rock', 'paper', 'scissors'];
+const MOVES = ['rock', 'paper', 'scissors'];
 
 function randomIntNumber(start=0, end = 1)
 {
@@ -7,20 +7,19 @@ function randomIntNumber(start=0, end = 1)
 
 function computerPlay()
 {
-    const cpu_choice = moves[randomIntNumber(0,2)];
-    return cpu_choice;
+    return MOVES[randomIntNumber(0,2)];
 }
 
 function userPlay()
 {
-    let user_choice = undefined;
+    let userChoice = undefined;
     do
     {
-        user_choice = prompt("Rock, Paper or Scissors?", 'rock').toLowerCase();
+        userChoice = prompt("Rock, Paper or Scissors?", 'rock').toLowerCase();
     }
-    while(!moves.includes(user_choice));
+    while(!MOVES.includes(userChoice));
 
-    return user_choice;
+    return userChoice;
 }
 
 function playRound(playerSelection, computerSelection)
